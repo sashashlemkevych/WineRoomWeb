@@ -34,6 +34,11 @@
                 @endforeach
                 </tbody>
             </table>
+        @else
+            <div class="text-center">
+                <h3>Замовлень немає</h3>
+                <a href="{{route('main')}}" class="btn btn-outline-danger">Повернутися на головну</a>
+            </div>
         @endif
     @endisset
 @endsection

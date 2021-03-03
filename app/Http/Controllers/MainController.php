@@ -14,6 +14,17 @@ class MainController extends Controller
        // return view('main');
     }
 
+    public function contacts( Request $request){
+        $review = new contact();
+        $review ->name = $request->input('name');
+        $review ->phone = $request->input('phone');
+        $review ->email = $request->input('email');
+        $review ->massage = $request->input('massage');
+
+        $review->save();
+return redirect()->route('/main');
+    }
+
     public function about(){
         return view('about');
     }
