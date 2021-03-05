@@ -114,7 +114,7 @@ return redirect()->route('/main');
             'price'=>'required|min:2|max:25',
             'type'=>'required|min:5|max:25',
             'storage'=>'required|min:5|max:200',
-            'vol'=>'required|min:5|max:25',
+            'vol'=>'required|min:1|max:25',
             'eat'=>'required|min:5|max:50',
             'temperature'=>'required|min:5|max:50',
             'short_description'=>'required|min:5|max:100',

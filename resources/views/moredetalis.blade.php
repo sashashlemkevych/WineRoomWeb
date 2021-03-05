@@ -7,7 +7,7 @@
         <div class="container my-5">
             <div class="row">
                 <div class="col-md-4">
-                    <img  src="data:image/png;base64,{{ chunk_split(base64_encode($el->image)) }}">
+                    <img src="data:image/png;base64,{{ chunk_split(base64_encode($el->image)) }}">
                 </div>
             <div class="text-justify col-md-8">
                 <h3>{{$el->name}}</h3>
