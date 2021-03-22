@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Contact;
 use App\Models\WineModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,15 +14,22 @@ class MainController extends Controller
        // return view('main');
     }
 
-    public function contacts( Request $request){
-        $review = new contact();
+    public function about_check(Request $request){
+        $valid = $request->validate([
+            'name'=>'required|min:5|max:30',
+            'phone'=>'required|min:10|max:14',
+            'email'=>'required|min:5|max:50',
+            'massage'=>'required|min:5|max:500',
+
+        ]);
+        $review = new Contact();
         $review ->name = $request->input('name');
         $review ->phone = $request->input('phone');
         $review ->email = $request->input('email');
         $review ->massage = $request->input('massage');
 
         $review->save();
-return redirect()->route('/main');
+return redirect()->route('about');
     }
 
     public function about(){
