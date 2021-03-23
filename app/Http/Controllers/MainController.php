@@ -81,12 +81,16 @@ return redirect()->route('about');
           'price'=>'required|min:2|max:25',
           'type'=>'required|min:5|max:25',
           'storage'=>'required|min:5|max:200',
-          'vol'=>'required|min:5|max:25',
+          'strength'=>'required|min:5|max:25',
           'eat'=>'required|min:5|max:100',
           'temperature'=>'required|min:5|max:50',
           'short_description'=>'required|min:5|max:100',
           'description'=>'required|min:15|max:500',
           'count'=>'required|min:1|max:100|',
+          'country'=>'required|min:1|max:100|',
+          'volume'=>'required|min:1|max:100|',
+
+
           'image'=>'required',
 
       ]);
@@ -96,12 +100,14 @@ return redirect()->route('about');
       $review ->price = $request->input('price');
       $review ->type = $request->input('type');
       $review ->storage = $request->input('storage');
-      $review ->vol = $request->input('vol');
+      $review ->strength = $request->input('strength');
       $review ->eat = $request->input('eat');
       $review ->temperature = $request->input('temperature');
       $review ->short_description = $request->input('short_description');
       $review ->description = $request->input('description');
       $review->count=$request->input('count');
+      $review->count=$request->input('country');
+        $review->count=$request->input('volume');
 
         if ($request->hasFile('image')) {
             $photo_file = $request->file("image");
@@ -121,18 +127,20 @@ return redirect()->route('about');
             'price'=>'required|min:2|max:25',
             'type'=>'required|min:5|max:25',
             'storage'=>'required|min:5|max:200',
-            'vol'=>'required|min:1|max:25',
-            'eat'=>'required|min:5|max:50',
+            'strength'=>'required|min:1|max:25',
+            'eat'=>'required|min:5|max:150',
             'temperature'=>'required|min:5|max:50',
             'short_description'=>'required|min:5|max:100',
             'description'=>'required|min:15|max:500',
             'count'=>'required|min:1|max:100|',
+            'country'=>'required|min:1|max:100|',
+            'volume'=>'required|min:1|max:100|',
         ]);
 
-        DB::update("UPDATE wine_models SET name = ?, price = ?, type = ?, storage = ?, vol = ?, eat = ? , temperature = ?, short_description = ?, description = ?, count = ? WHERE id = ?
+        DB::update("UPDATE wine_models SET name = ?, price = ?, type = ?, storage = ?, strength = ?, eat = ? , temperature = ?, short_description = ?, description = ?, count = ?, country = ?, volume = ? WHERE id = ?
         ",[$request->input('name'),$request->input('price'),$request->input('type')
-            ,$request->input('storage'),$request->input('vol'),$request->input('eat'),$request->input('temperature'),$request->input('short_description'),
-            $request->input('description'),$request->input('count'),$id]);
+            ,$request->input('storage'),$request->input('strength'),$request->input('eat'),$request->input('temperature'),$request->input('short_description'),
+            $request->input('description'),$request->input('count'),$request->input('country'),$request->input('volume'),$id]);
 
         if ($request->file('image')) DB::update("UPDATE wine_models SET image = ? WHERE id = ?", [$request->file('image')->openFile()->fread($request->file('image')->getSize()),$id]);
 

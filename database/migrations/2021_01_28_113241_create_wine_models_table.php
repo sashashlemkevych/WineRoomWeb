@@ -19,7 +19,7 @@ class CreateWineModelsTable extends Migration
             $table->integer('price');
             $table->string('type');
             $table->string('storage');
-            $table->string('vol');
+            $table->string('strength');
             $table->string('eat');
             $table->string('temperature');
             $table->string('short_description');

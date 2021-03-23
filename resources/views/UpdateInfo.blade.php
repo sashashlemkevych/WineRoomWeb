@@ -24,6 +24,10 @@
             <input type="text" class="form-control" value="{{$el->price}}" name="price" placeholder="" required>
         </div>
         <div class="form-group">
+            <label for="country">Країна</label>
+            <input type="text" class="form-control" value="{{$el->country}}" name="country" placeholder="" required>
+        </div>
+        <div class="form-group">
             <label for="type">Тип</label>
             <input type="text" class="form-control" value="{{$el->type}}" name="type" placeholder="" required>
         </div>
@@ -32,8 +36,8 @@
             <input type="text" class="form-control" value="{{$el->storage}}" name="storage" placeholder="" required>
         </div>
         <div class="form-group">
-            <label for="vol">Міцність</label>
-            <input type="text" class="form-control" value="{{$el->vol}}" name="vol" placeholder="" required>
+            <label for="strength">Міцність</label>
+            <input type="text" class="form-control" value="{{$el->strength}}" name="strength" placeholder="" required>
         </div>
         <div class="form-group">
             <label for="eat">Їжа</label>
@@ -42,6 +46,10 @@
         <div class="form-group">
             <label for="temperature">Температура подачі</label>
             <input type="text" class="form-control" value="{{$el->temperature}}" name="temperature" placeholder="" required>
+        </div>
+        <div class="form-group">
+            <label for="volume">Об'єм</label>
+            <input type="text" class="form-control" value="{{$el->volume}}" name="volume" placeholder="" required>
         </div>
         <div class="form-group">
             <label for="short_description">Коротки опис</label>

@@ -9,7 +9,7 @@ class WineModel extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name','price','type','storage','vol','eat','temperature','short_description','description','image'];
+    protected $fillable = ['name','price','type','storage','strength','eat','temperature','short_description','description','image'];
 
     public function create()
     {

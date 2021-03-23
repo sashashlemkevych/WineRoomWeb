@@ -22,7 +22,7 @@
             <li><a class="dropdown-item" href="#">Вина</a></li>
             <li class="dropdown">
                 <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">Аксесуари</a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-submenu">
                     <li><a class="dropdown-item" href="#">Вина</a></li>
                     <li><a class="dropdown-item" href="#">Вина</a></li>
                 </ul>
@@ -79,9 +79,9 @@
             <small class="d-block mb-3 text-muted">© 2020–2021</small>
         </div>
         <div class="col-6 col-md">
-            <h5>Features</h5>
+            <h5>Каталог</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Cool stuff</a></li>
+                <li><a class="link-secondary" href="#">Вина</a></li>
                 <li><a class="link-secondary" href="#">Random feature</a></li>
                 <li><a class="link-secondary" href="#">Team feature</a></li>
                 <li><a class="link-secondary" href="#">Stuff for developers</a></li>
@@ -90,12 +90,11 @@
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>Resources</h5>
+            <h5>Оплата</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Resource name</a></li>
-                <li><a class="link-secondary" href="#">Resource</a></li>
-                <li><a class="link-secondary" href="#">Another resource</a></li>
-                <li><a class="link-secondary" href="#">Final resource</a></li>
+                <li><img src="https://img.icons8.com/ios-filled/48/000000/apple-pay.png"/></li>
+                <li><img src="https://img.icons8.com/color/48/000000/visa.png"/></li>
+                <li><img src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/></li>
             </ul>
         </div>
         <div class="col-6 col-md">
@@ -108,7 +107,8 @@
             </ul>
         </div>
         <div class="col-6 col-md">
-            <h5>About</h5>
+            <h5>Контакти</h5>
+            <h5>0990780289</h5>
             <ul class="list-unstyled text-small">
               <a href="https://uk-ua.facebook.com" target="_blank" class="text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                         <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -125,11 +125,44 @@
             </ul>
         </div>
     </div>
-    <a style="float:right; padding: 15px; color: black;" href="#"><svg style="width: 25px; height: 25px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354
-            7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-        </svg></a>
 </footer>
+<button onclick="topFunction()" id="myBtn" title="На початок" class="btn-danger"><img src="https://img.icons8.com/ios/30/000000/circled-chevron-up.png"/></button>
+<script>
+    var mybutton = document.getElementById("myBtn");
 
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<style>
+    #myBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 100px;
+    }
+
+    #myBtn:hover {
+        background-color: #555;
+    }
+</style>
 </body>
 </html>
