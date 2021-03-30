@@ -49,6 +49,8 @@ Route::get('/Orders',[App\Http\Controllers\MainController::class, 'Orders'])->na
 
 Route::get('/deleteOrders/{id}',[App\Http\Controllers\MainController::class, 'deleteOrders'])->name('deleteOrders');
 
+Route::get('/addAccessories',[App\Http\Controllers\MainController::class, 'addAccessories'])->name('addAccessories');
+
 
 
 Route::resource('WineModels', 'App\Http\Controllers\ProductController');

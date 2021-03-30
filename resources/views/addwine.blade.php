@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title')Добавлення@endsection
+@section('title')Додавання Вина@endsection
 
 @section('main_content')
     <h1>Форма додавання</h1>

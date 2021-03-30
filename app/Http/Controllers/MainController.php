@@ -44,6 +44,10 @@ return redirect()->route('about');
         return view('ToOrder');
     }
 
+    public function addAccessories(){
+        return view('addAccessories');
+    }
+
     public function Orders(){
         $orders = DB::select("SELECT wine_models.*,orders.id AS oid, orders.* FROM orders INNER JOIN wine_models ON wine_models.id = orders.basketid");
         return view('Orders',['orders'=>$orders]);

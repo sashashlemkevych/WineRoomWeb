@@ -82,11 +82,20 @@
             <h5>Каталог</h5>
             <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="#">Вина</a></li>
-                <li><a class="link-secondary" href="#">Random feature</a></li>
+                <li><a class="link-secondary" href="#">Бокали</a></li>
                 <li><a class="link-secondary" href="#">Team feature</a></li>
                 <li><a class="link-secondary" href="#">Stuff for developers</a></li>
                 <li><a class="link-secondary" href="#">Another one</a></li>
                 <li><a class="link-secondary" href="#">Last time</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Магазин</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary" href="#">Про нас</a></li>
+                <li><a class="link-secondary" href="#">Оплата і доставка</a></li>
+                <li><a class="link-secondary" href="#">Новини</a></li>
+                <li><a class="link-secondary" href="#">Акції</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
@@ -95,15 +104,6 @@
                 <li><img src="https://img.icons8.com/ios-filled/48/000000/apple-pay.png"/></li>
                 <li><img src="https://img.icons8.com/color/48/000000/visa.png"/></li>
                 <li><img src="https://img.icons8.com/color/48/000000/mastercard-logo.png"/></li>
-            </ul>
-        </div>
-        <div class="col-6 col-md">
-            <h5>Resources</h5>
-            <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Business</a></li>
-                <li><a class="link-secondary" href="#">Education</a></li>
-                <li><a class="link-secondary" href="#">Government</a></li>
-                <li><a class="link-secondary" href="#">Gaming</a></li>
             </ul>
         </div>
         <div class="col-6 col-md">
@@ -127,7 +127,7 @@
     </div>
 </footer>
 <button onclick="topFunction()" id="myBtn" title="На початок" class="btn-danger"><img src="https://img.icons8.com/ios/30/000000/circled-chevron-up.png"/></button>
-<script>
+    <script>
     var mybutton = document.getElementById("myBtn");
 
     window.onscroll = function() {scrollFunction()};
@@ -159,7 +159,6 @@
         padding: 15px;
         border-radius: 100px;
     }
-
     #myBtn:hover {
         background-color: #555;
     }
