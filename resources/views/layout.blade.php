@@ -13,22 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-danger text-white border-bottom shadow-sm">
     <p class="h5 my-0 mr-md-auto fw-normal"><a class="text-decoration-none" style="color: white;" href="{{route('main')}}">Wine Room</a></p>
-    {{--Menu--}}
-    <div class="btn-group">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Категорії
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Вина</a></li>
-            <li class="dropdown">
-                <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">Аксесуари</a>
-                <ul class="dropdown-submenu">
-                    <li><a class="dropdown-item" href="#">Вина</a></li>
-                    <li><a class="dropdown-item" href="#">Вина</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
     @auth()
     <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,6 +21,7 @@
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('addwine')}}">Добавлення</a></li>
             <li><a class="dropdown-item" href="{{route('Orders')}}">Замовлення</a></li>
+            <li><a class="dropdown-item" href="{{route('infoContact')}}">Повідомлення</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -72,7 +57,7 @@
 
 </main>
 <hr class="featurette-divider">
-<footer class="container py-5" >
+<footer class="container py-5">
     <div class="row">
         <div class="col-12 col-md">
             <img width="24" height="24" src="https://img.icons8.com/pastel-glyph/64/000000/wine-and-grapes.png"/>

@@ -35,6 +35,10 @@ return redirect()->route('about');
     public function about(){
         return view('about');
     }
+    public function infoContact(){
+        $abouts = new Contact();
+        return view('infoContact', ['abouts' => $abouts->all()]);
+    }
 
     public function addwine(){
         return view('addwine');
@@ -157,5 +161,10 @@ return redirect()->route('about');
         DB::delete("DELETE FROM wine_models WHERE id = ?",[$id]);
 
         return redirect()->route('main');
+    }
+    public function deleteContact($id){
+        DB::delete("DELETE FROM contacts WHERE id = ?",[$id]);
+
+        return redirect()->route('infoContact');
     }
 }
