@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Accessories;
 use App\Models\Contact;
 use App\Models\WineModel;
 use Illuminate\Http\Request;
@@ -50,6 +51,36 @@ return redirect()->route('about');
 
     public function addAccessories(){
         return view('addAccessories');
+    }
+
+    public function addAccessories_check(Request $request){
+        $valid = $request->validate([
+            'name'=>'required|min:5|max:50',
+            'price'=>'required|min:2|max:14',
+            'type'=>'required|',
+            'country'=>'required|min:5|max:100',
+            'volume'=>'required|min:1|max:10',
+            'count'=>'required|min:1|max:100',
+
+            'image'=>'required',
+
+        ]);
+        $review = new Accessories();
+        $review ->name = $request->input('name');
+        $review ->price = $request->input('price');
+        $review ->type = $request->input('type');
+        $review ->country = $request->input('country');
+        $review ->volume = $request->input('volume');
+        $review ->count = $request->input('count');
+
+        if ($request->hasFile('image')) {
+            $photo_file = $request->file("image");
+            $photo = $photo_file->openFile()->fread($photo_file->getSize());
+            $review->image = $photo;
+        }
+
+        $review->save();
+        return redirect()->route('addAccessories');
     }
 
     public function Orders(){

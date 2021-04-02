@@ -51,6 +51,8 @@ Route::get('/deleteOrders/{id}',[App\Http\Controllers\MainController::class, 'de
 
 Route::get('/addAccessories',[App\Http\Controllers\MainController::class, 'addAccessories'])->name('addAccessories');
 
+Route::post('/addAccessories/check',[App\Http\Controllers\MainController::class, 'addAccessories_check'])->name('addAccessories_check');
+
 Route::get('/infoContact',[App\Http\Controllers\MainController::class, 'infoContact'])->name('infoContact');
 
 Route::get('/deleteContact/{id}',[App\Http\Controllers\MainController::class, 'deleteContact'])->name('deleteContact');

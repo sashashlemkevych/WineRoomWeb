@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title')Головна@endsection
+@section('title')Магазин@endsection
 
 @section('main_content')
 

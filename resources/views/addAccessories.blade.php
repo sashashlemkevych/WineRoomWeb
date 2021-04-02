@@ -15,15 +15,15 @@
         </div>
     @endif
 
-    <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="/addAccessories/check" enctype="multipart/form-data">
         @csrf
         <input type="text" name="name" id="name" placeholder="Назва" class="form-control"><br>
         <input type="text" name="price" id="price" placeholder="Ціну" class="form-control"><br>
         <label for="type">Тип</label>
         <select name="type" id="type" class="form-control" style="width: 150px">
-            <option value="1">Бокал</option>
-            <option value="2">Декантер</option>
-            <option value="3">Упаковка</option>
+            <option value="Dekanter">Декантер</option>
+            <option value="Bokal">Бокал</option>
+            <option value="Upakovka">Упаковка</option>
         </select><br>
         <input type="text" name="country" id="country" placeholder="Країна" class="form-control"><br>
         <input type="text" name="volume" id="volume" placeholder="Об'єм" class="form-control"><br>
@@ -34,8 +34,5 @@
 
     </form>
 
-    <script>
-
-    </script>
 
 @endsection

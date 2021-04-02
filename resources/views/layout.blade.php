@@ -19,9 +19,10 @@
             Адмін
         </button>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{route('addwine')}}">Добавлення</a></li>
+            <li><a class="dropdown-item" href="{{route('addwine')}}">Додавання вина</a></li>
             <li><a class="dropdown-item" href="{{route('Orders')}}">Замовлення</a></li>
             <li><a class="dropdown-item" href="{{route('infoContact')}}">Повідомлення</a></li>
+            <li><a class="dropdown-item" href="{{route('addAccessories')}}">Додавання аксесуарів</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
@@ -36,7 +37,7 @@
     </div>
     @endauth
     <nav class="my-2 my-md-0 me-md-3">
-        <a class="p-2 text-white" href="/">Головна</a>
+        <a class="p-2 text-white" href="/">Магазин</a>
         <a class="p-2 text-white" href="/about">Про нас</a>
         <a class="p-2 text-white" href="/basket">Кошик</a>
     </nav>
