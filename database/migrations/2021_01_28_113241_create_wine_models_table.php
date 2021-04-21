@@ -21,6 +21,9 @@ class CreateWineModelsTable extends Migration
             $table->string('storage');
             $table->string('strength');
             $table->string('eat');
+            $table->string('country');
+            $table->string('volume');
+            $table->string('count');
             $table->string('temperature');
             $table->string('short_description');
             $table->text('description');

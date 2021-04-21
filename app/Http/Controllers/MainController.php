@@ -145,8 +145,8 @@ return redirect()->route('about');
       $review ->short_description = $request->input('short_description');
       $review ->description = $request->input('description');
       $review->count=$request->input('count');
-      $review->count=$request->input('country');
-        $review->count=$request->input('volume');
+      $review->country=$request->input('country');
+        $review->volume=$request->input('volume');
 
         if ($request->hasFile('image')) {
             $photo_file = $request->file("image");
