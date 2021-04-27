@@ -53,6 +53,11 @@ return redirect()->route('about');
         return view('addAccessories');
     }
 
+    public function Accessories(){
+        $access = new Accessories();
+        return view('Accessories', ['access' => $access->all()]);
+    }
+
     public function addAccessories_check(Request $request){
         $valid = $request->validate([
             'name'=>'required|min:5|max:50',
@@ -98,6 +103,11 @@ return redirect()->route('about');
         return view('UpdateInfo',['el'=>$info]);
     }
 
+    public function UpdateAccessories($id){
+        $info = DB::select("SELECT * FROM accessories WHERE id =?",[$id])[0];
+        return view('UpdateAccessories',['el'=>$info]);
+    }
+
     public function basket(Request $request){
         $wines = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ?",[$request->cookie('id')]);
         return view('basket', ['wines'=>isset($wines)?$wines:NULL]);
@@ -109,9 +119,32 @@ return redirect()->route('about');
         return view('main', ['mains'=>$wine]);
         }
 
+    public function bokal(Request $request){
+        $bokal = $request->bokal;
+        $acc = DB::select("SELECT * FROM Accessories WHERE type='Бокал'");
+        return view('Accessories', ['access'=>$acc]);
+    }
+
+    public function upakov(Request $request){
+        $upakov = $request->upakov;
+        $acc = DB::select("SELECT * FROM Accessories WHERE type='Упаковка'");
+        return view('Accessories', ['access'=>$acc]);
+    }
+
+    public function dekan(Request $request){
+        $dekan = $request->dekan;
+        $acc = DB::select("SELECT * FROM Accessories WHERE type='Декантер'");
+        return view('Accessories', ['access'=>$acc]);
+    }
+
     public function moredetalis_id($id){
         $info = DB::select("SELECT * FROM wine_models WHERE id = ?",[$id]);
         return view('moredetalis',['mains'=>$info]);
+    }
+
+    public function moreAccessories_id($id){
+        $info = DB::select("SELECT * FROM Accessories WHERE id = ?",[$id]);
+        return view('moreAccessories',['access'=>$info]);
     }
 
     public function addwine_check(Request $request ){
@@ -188,11 +221,40 @@ return redirect()->route('about');
         return redirect()->route('main');
     }
 
+    public function UpdateAccessoriesInfo(Request $request, $id){
+
+        $valid = $request->validate([
+            'name'=>'required|min:5|max:50',
+            'price'=>'required|min:2|max:14',
+            'type'=>'required|',
+            'country'=>'required|min:5|max:100',
+            'volume'=>'required|min:1|max:10',
+            'count'=>'required|min:1|max:100',
+
+        ]);
+
+        DB::update("UPDATE accessories SET name = ?, price = ?, type = ?, count = ?, country = ?, volume = ? WHERE id = ?",
+            [$request->input('name'),$request->input('price'),$request->input('type'),
+            $request->input('count'),$request->input('country'),$request->input('volume'),$id]);
+
+        if ($request->file('image')) DB::update("UPDATE accessories SET image = ? WHERE id = ?", [$request->file('image')->openFile()->fread($request->file('image')->getSize()),$id]);
+
+
+        return redirect()->route('Accessories');
+    }
+
     public function deleteWine($id){
         DB::delete("DELETE FROM wine_models WHERE id = ?",[$id]);
 
         return redirect()->route('main');
     }
+
+    public function deleteAccessories($id)
+    {
+        DB::delete("DELETE FROM accessories WHERE id = ?", [$id]);
+        return redirect()->route('Accessories');
+    }
+
     public function deleteContact($id){
         DB::delete("DELETE FROM contacts WHERE id = ?",[$id]);
 

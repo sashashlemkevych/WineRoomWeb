@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-danger text-white border-bottom shadow-sm">
-    <p class="h5 my-0 mr-md-auto fw-normal"><a class="text-decoration-none" style="color: white;" href="{{route('main')}}">Wine Room</a></p>
+    <span style="font-size:30px;cursor:pointer; margin-right: 15px"  onclick="openNav()">☰</span> <p class="h5 my-0 mr-md-auto fw-normal"><a class="text-decoration-none" style="color: white;" href="{{route('main')}}">Wine Room</a></p>
     @auth()
     <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,7 +37,6 @@
     </div>
     @endauth
     <nav class="my-2 my-md-0 me-md-3">
-        <a class="p-2 text-white" href="/">Магазин</a>
         <a class="p-2 text-white" href="/about">Про нас</a>
         <a class="p-2 text-white" href="/basket">Кошик</a>
     </nav>
@@ -50,6 +49,7 @@
             </svg>
         </button>
     </form>
+
 </header>
 
 <main class="container">
@@ -149,5 +149,98 @@
         background-color: #555;
     }
 </style>
+<style>
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #6e7872;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+    .sidenav a, .dropdown-btn {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #fafafa;
+        display: block;
+        border: none;
+        background: none;
+        width:100%;
+        text-align: left;
+        outline: none;
+    }
+
+    .sidenav a:hover, .dropdown-btn:hover {
+        color: #d95a5a;
+    }
+
+    /* Положение и стиль кнопки закрытия (верхний правый угол) */
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        left: 85px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    .dropdown-container {
+        display: none;
+        background-color: #262626;
+        padding-left: 8px;
+    }
+    .fa-caret-down {
+        float: right;
+        padding-right: 8px;
+    }
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }
+</style>
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="/">Головна</a>
+    <button class="dropdown-btn">Аксесуари
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="{{route('bokal')}}">Бокал</a>
+        <a href="{{route('dekan')}}">Декантер</a>
+        <a href="{{route('upakov')}}">Упаковка</a>
+    </div>
+</div>
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "200px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
 </body>
+
 </html>

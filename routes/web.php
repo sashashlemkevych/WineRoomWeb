@@ -57,6 +57,25 @@ Route::get('/infoContact',[App\Http\Controllers\MainController::class, 'infoCont
 
 Route::get('/deleteContact/{id}',[App\Http\Controllers\MainController::class, 'deleteContact'])->name('deleteContact');
 
+Route::get('/Accessories',[App\Http\Controllers\MainController::class, 'Accessories'])->name('Accessories');
+
+Route::get('/moreAccessories/{id}',[App\Http\Controllers\MainController::class, 'moreAccessories_id'])->name('moreAccessories_id');
+
+Route::get('/moreAccessories',[App\Http\Controllers\MainController::class, 'moreAccessories'])->name('moreAccessories');
+
+Route::post('/addToBasketAccess/{id}',[App\Http\Controllers\BasketController::class, 'addToBasketAccess'])->name('addToBasketAccess');
+
+Route::get('/bokal',[App\Http\Controllers\MainController::class, 'bokal'])->name('bokal');
+
+Route::get('/dekan',[App\Http\Controllers\MainController::class, 'dekan'])->name('dekan');
+
+Route::get('/upakov',[App\Http\Controllers\MainController::class, 'upakov'])->name('upakov');
+
+Route::get('/UpdateAccessories/{id}',[App\Http\Controllers\MainController::class, 'UpdateAccessories'])->name('UpdateAccessories');
+
+Route::post('/UpdateAccessories/{id}',[App\Http\Controllers\MainController::class, 'UpdateAccessoriesInfo'])->name('UpdateAccessoriesInfo');
+
+Route::get('/UpdateAccessories/delete/{id}',[App\Http\Controllers\MainController::class, 'deleteAccessories'])->name('deleteAccessories');
 
 Route::resource('WineModels', 'App\Http\Controllers\ProductController');
 

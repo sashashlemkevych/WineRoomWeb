@@ -21,9 +21,9 @@
         <input type="text" name="price" id="price" placeholder="Ціну" class="form-control"><br>
         <label for="type">Тип</label>
         <select name="type" id="type" class="form-control" style="width: 150px">
-            <option value="Dekanter">Декантер</option>
-            <option value="Bokal">Бокал</option>
-            <option value="Upakovka">Упаковка</option>
+            <option value="Декантер">Декантер</option>
+            <option value="Бокал">Бокал</option>
+            <option value="Упаковка">Упаковка</option>
         </select><br>
         <input type="text" name="country" id="country" placeholder="Країна" class="form-control"><br>
         <input type="text" name="volume" id="volume" placeholder="Об'єм" class="form-control"><br>
