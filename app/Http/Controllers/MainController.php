@@ -12,7 +12,6 @@ class MainController extends Controller
     public function main(){
         $mains = new WineModel();
         return view('main', ['mains' => $mains->all()]);
-       // return view('main');
     }
 
     public function about_check(Request $request){
@@ -162,7 +161,6 @@ return redirect()->route('about');
           'country'=>'required|min:1|max:100|',
           'volume'=>'required|min:1|max:100|',
 
-
           'image'=>'required',
 
       ]);
@@ -216,8 +214,6 @@ return redirect()->route('about');
 
         if ($request->file('image')) DB::update("UPDATE wine_models SET image = ? WHERE id = ?", [$request->file('image')->openFile()->fread($request->file('image')->getSize()),$id]);
 
-
-
         return redirect()->route('main');
     }
 
@@ -239,13 +235,11 @@ return redirect()->route('about');
 
         if ($request->file('image')) DB::update("UPDATE accessories SET image = ? WHERE id = ?", [$request->file('image')->openFile()->fread($request->file('image')->getSize()),$id]);
 
-
         return redirect()->route('Accessories');
     }
 
     public function deleteWine($id){
         DB::delete("DELETE FROM wine_models WHERE id = ?",[$id]);
-
         return redirect()->route('main');
     }
 
@@ -257,7 +251,6 @@ return redirect()->route('about');
 
     public function deleteContact($id){
         DB::delete("DELETE FROM contacts WHERE id = ?",[$id]);
-
         return redirect()->route('infoContact');
     }
 }

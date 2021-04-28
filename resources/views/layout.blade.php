@@ -67,8 +67,8 @@
         <div class="col-6 col-md">
             <h5>Каталог</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Вина</a></li>
-                <li><a class="link-secondary" href="#">Бокали</a></li>
+                <li><a class="link-secondary" href="/">Вина</a></li>
+                <li><a class="link-secondary" href="Accessories">Аксесуари</a></li>
                 <li><a class="link-secondary" href="#">Team feature</a></li>
                 <li><a class="link-secondary" href="#">Stuff for developers</a></li>
                 <li><a class="link-secondary" href="#">Another one</a></li>
@@ -80,7 +80,7 @@
             <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="#">Про нас</a></li>
                 <li><a class="link-secondary" href="#">Оплата і доставка</a></li>
-                <li><a class="link-secondary" href="#">Новини</a></li>
+                <li><a class="link-secondary" href="#">Рейтинг</a></li>
                 <li><a class="link-secondary" href="#">Акції</a></li>
             </ul>
         </div>
