@@ -36,10 +36,12 @@
         </ul>
     </div>
     @endauth
+
     <nav class="my-2 my-md-0 me-md-3">
         <a class="p-2 text-white" href="/about">Про нас</a>
-        <a class="p-2 text-white" href="/basket">Кошик</a>
+
     </nav>
+
     <form class="d-flex" type="get" action="{{route('search')}}">
         @csrf
         <input  name="search" class="form-control me-2" type="search" placeholder="Пошук товарів" aria-label="Search">
@@ -49,6 +51,16 @@
             </svg>
         </button>
     </form>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16" style="margin-right: 15px">
+        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+    </svg>
+
+    <a href="/basket" style=" color: white" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-basket3" viewBox="0 0 16 16">
+        <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z"/>
+        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6h-9.21z"/>
+    </svg> </a>
 
 </header>
 
@@ -63,17 +75,6 @@
         <div class="col-12 col-md">
             <img width="24" height="24" src="https://img.icons8.com/pastel-glyph/64/000000/wine-and-grapes.png"/>
             <small class="d-block mb-3 text-muted">© 2020–2021</small>
-        </div>
-        <div class="col-6 col-md">
-            <h5>Каталог</h5>
-            <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="/">Вина</a></li>
-                <li><a class="link-secondary" href="Accessories">Аксесуари</a></li>
-                <li><a class="link-secondary" href="#">Team feature</a></li>
-                <li><a class="link-secondary" href="#">Stuff for developers</a></li>
-                <li><a class="link-secondary" href="#">Another one</a></li>
-                <li><a class="link-secondary" href="#">Last time</a></li>
-            </ul>
         </div>
         <div class="col-6 col-md">
             <h5>Магазин</h5>
@@ -113,11 +114,9 @@
     </div>
 </footer>
 <button onclick="topFunction()" id="myBtn" title="На початок" class="btn-danger"><img src="https://img.icons8.com/ios/30/000000/circled-chevron-up.png"/></button>
-    <script>
+<script>
     var mybutton = document.getElementById("myBtn");
-
     window.onscroll = function() {scrollFunction()};
-
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             mybutton.style.display = "block";
@@ -150,33 +149,32 @@
     }
 </style>
 <style>
+    /* Боковое навигационное меню */
     .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 ширина - изменить это с помощью JavaScript */
+        position: fixed; /* Оставайтесь на месте */
+        z-index: 1; /* Оставайтесь сверху */
+        top: 0; /* Оставайтесь наверху */
         left: 0;
-        background-color: #6e7872;
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
+        background-color: #6e7872; /* Фон черный*/
+        overflow-x: hidden; /* Отключить горизонтальную прокрутку */
+        padding-top: 60px; /* Поместите контент в 60px сверху */
+        transition: 0.5s; /* 0.5 второй эффект перехода слайда в боковой навигации */
     }
 
-    .sidenav a, .dropdown-btn {
-        padding: 6px 8px 6px 16px;
+    /* Ссылки меню навигации */
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
         text-decoration: none;
-        font-size: 20px;
+        font-size: 23px;
         color: #fafafa;
         display: block;
-        border: none;
-        background: none;
-        width:100%;
-        text-align: left;
-        outline: none;
+        transition: 0.3s;
     }
 
-    .sidenav a:hover, .dropdown-btn:hover {
+    /* Когда вы наводите курсор мыши на навигационные ссылки, изменяется их цвет */
+    .sidenav a:hover {
         color: #d95a5a;
     }
 
@@ -184,36 +182,60 @@
     .sidenav .closebtn {
         position: absolute;
         top: 0;
-        left: 85px;
+        right: 25px;
         font-size: 36px;
         margin-left: 50px;
     }
-
-    .dropdown-container {
-        display: none;
-        background-color: #262626;
-        padding-left: 8px;
-    }
-    .fa-caret-down {
-        float: right;
-        padding-right: 8px;
-    }
+    /* На экранах меньшего размера, где высота меньше 450px, измените стиль sidenav (меньше отступов и меньший размер шрифта) */
     @media screen and (max-height: 450px) {
         .sidenav {padding-top: 15px;}
         .sidenav a {font-size: 18px;}
     }
+    .dropbtn {
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: relative;
+        background-color: #828e88;
+        min-width: 199px;
+        box-shadow: 0px 2px 12px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {display: block;}
+
 </style>
 
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <a href="/">Головна</a>
-    <button class="dropdown-btn">Аксесуари
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="{{route('bokal')}}">Бокал</a>
-        <a href="{{route('dekan')}}">Декантер</a>
-        <a href="{{route('upakov')}}">Упаковка</a>
+    <div class="dropdown">
+        <a class="dropbtn" href="/Accessories">Аксесуари</a>
+        <div class="dropdown-content">
+            <a href="/bokal">Бокал</a>
+            <a href="/dekan">Декантер</a>
+            <a href="/upakov">Упаковка</a>
+        </div>
     </div>
 </div>
 
@@ -221,13 +243,11 @@
     function openNav() {
         document.getElementById("mySidenav").style.width = "200px";
     }
-
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
     }
     var dropdown = document.getElementsByClassName("dropdown-btn");
     var i;
-
     for (i = 0; i < dropdown.length; i++) {
         dropdown[i].addEventListener("click", function() {
             this.classList.toggle("active");
@@ -240,7 +260,7 @@
         });
     }
 </script>
-
 </body>
+
 
 </html>

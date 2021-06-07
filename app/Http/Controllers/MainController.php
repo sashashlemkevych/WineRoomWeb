@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Accessories;
 use App\Models\Contact;
 use App\Models\WineModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,10 +43,6 @@ return redirect()->route('about');
 
     public function addwine(){
         return view('addwine');
-    }
-
-    public function ToOrder(){
-        return view('ToOrder');
     }
 
     public function addAccessories(){
@@ -87,16 +84,6 @@ return redirect()->route('about');
         return redirect()->route('addAccessories');
     }
 
-    public function Orders(){
-        $orders = DB::select("SELECT wine_models.*,orders.id AS oid, orders.* FROM orders INNER JOIN wine_models ON wine_models.id = orders.basketid");
-        return view('Orders',['orders'=>$orders]);
-    }
-
-    public function deleteOrders($id){
-        DB::delete("DELETE FROM orders WHERE id = ?",[$id]);
-        return redirect()->route('Orders');
-    }
-
     public function UpdateInfo($id){
         $info = DB::select("SELECT * FROM wine_models WHERE id =?",[$id])[0];
         return view('UpdateInfo',['el'=>$info]);
@@ -113,9 +100,9 @@ return redirect()->route('about');
     }
 
         public function search(Request $request){
-        $search = $request->search;
-        $wine = DB::select("SELECT * FROM wine_models WHERE name LIKE '%$search%'");
-        return view('main', ['mains'=>$wine]);
+            $search = $request->search;
+            $wine = DB::select("SELECT * FROM wine_models WHERE name LIKE '%$search%'");
+            return view('main', ['product'=>$wine]);
         }
 
     public function bokal(Request $request){

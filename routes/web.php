@@ -35,19 +35,11 @@ Route::get('/deleteBasket/{id}',[App\Http\Controllers\BasketController::class, '
 
 Route::post('/addToBasket/{id}',[App\Http\Controllers\BasketController::class, 'addToBasket'])->name('addToBasket');
 
-Route::get('/ToOrder',[App\Http\Controllers\MainController::class, 'ToOrder'])->name('ToOrder');
-
 Route::get('/UpdateInfo/{id}',[App\Http\Controllers\MainController::class, 'UpdateInfo'])->name('UpdateInfo');
 
 Route::post('/UpdateInfo/{id}',[App\Http\Controllers\MainController::class, 'UpdateWine'])->name('UpdateWine');
 
 Route::get('/UpdateInfo/delete/{id}',[App\Http\Controllers\MainController::class, 'deleteWine'])->name('deleteWine');
-
-Route::post('/ToOrder',[App\Http\Controllers\BasketController::class, 'orderview'])->name('orderview');
-
-Route::get('/Orders',[App\Http\Controllers\MainController::class, 'Orders'])->name('Orders');
-
-Route::get('/deleteOrders/{id}',[App\Http\Controllers\MainController::class, 'deleteOrders'])->name('deleteOrders');
 
 Route::get('/addAccessories',[App\Http\Controllers\MainController::class, 'addAccessories'])->name('addAccessories');
 
