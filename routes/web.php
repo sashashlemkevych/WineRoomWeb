@@ -33,7 +33,11 @@ Route::get('/basket',[App\Http\Controllers\MainController::class, 'basket'])->na
 
 Route::get('/deleteBasket/{id}',[App\Http\Controllers\BasketController::class, 'deleteBasket'])->name('deleteBasket');
 
+Route::get('/deleteBasketA/{id}',[App\Http\Controllers\BasketController::class, 'deleteBasketA'])->name('deleteBasketA');
+
 Route::post('/addToBasket/{id}',[App\Http\Controllers\BasketController::class, 'addToBasket'])->name('addToBasket');
+
+Route::post('/addToBasketAcc/{id}',[App\Http\Controllers\BasketController::class, 'addToBasketAcc'])->name('addToBasketAcc');
 
 Route::get('/UpdateInfo/{id}',[App\Http\Controllers\MainController::class, 'UpdateInfo'])->name('UpdateInfo');
 
@@ -54,8 +58,6 @@ Route::get('/Accessories',[App\Http\Controllers\MainController::class, 'Accessor
 Route::get('/moreAccessories/{id}',[App\Http\Controllers\MainController::class, 'moreAccessories_id'])->name('moreAccessories_id');
 
 Route::get('/moreAccessories',[App\Http\Controllers\MainController::class, 'moreAccessories'])->name('moreAccessories');
-
-Route::post('/addToBasketAccess/{id}',[App\Http\Controllers\BasketController::class, 'addToBasketAccess'])->name('addToBasketAccess');
 
 Route::get('/bokal',[App\Http\Controllers\MainController::class, 'bokal'])->name('bokal');
 

@@ -7,12 +7,20 @@ use App\Models\WineModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\App;
 
 class MainController extends Controller
 {
     public function main(){
+        $isadmin = false;
+        if(Auth::user()) {
+            $email = Auth::user()->email;
+            $admin_email = env('admin_user_email');
+            $isadmin = $admin_email == $email;
+        }
         $mains = new WineModel();
-        return view('main', ['mains' => $mains->all()]);
+        return view('main', ['mains' => $mains->all(),'isadmin'=>$isadmin]);
     }
 
     public function about_check(Request $request){
@@ -95,8 +103,11 @@ return redirect()->route('about');
     }
 
     public function basket(Request $request){
-        $wines = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ?",[$request->cookie('id')]);
-        return view('basket', ['wines'=>isset($wines)?$wines:NULL]);
+        $wines = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ? and basket.isa = false ",[$request->cookie('id')]);
+
+        $access = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, accessories.* FROM basket INNER JOIN accessories ON accessories.id = basket.Idwine WHERE basket.ID = ? and basket.isa = true",[$request->cookie('id')]);
+
+        return view('basket', ['wines'=>isset($wines)?$wines:NULL,'access'=>isset($access)?$access:NULL]);
     }
 
         public function search(Request $request){

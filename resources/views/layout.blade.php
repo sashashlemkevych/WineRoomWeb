@@ -13,14 +13,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-danger text-white border-bottom shadow-sm">
     <span style="font-size:30px;cursor:pointer; margin-right: 15px"  onclick="openNav()">☰</span> <p class="h5 my-0 mr-md-auto fw-normal"><a class="text-decoration-none" style="color: white;" href="{{route('main')}}">Wine Room</a></p>
+
     @auth()
+        @isset($isadmin)
+            @if($isadmin)
     <div class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Адмін
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('addwine')}}">Додавання вина</a></li>
-            <li><a class="dropdown-item" href="{{route('Orders')}}">Замовлення</a></li>
+            <li><a class="dropdown-item" href="">Замовлення</a></li>
             <li><a class="dropdown-item" href="{{route('infoContact')}}">Повідомлення</a></li>
             <li><a class="dropdown-item" href="{{route('addAccessories')}}">Додавання аксесуарів</a></li>
             <li><hr class="dropdown-divider"></li>
@@ -35,6 +38,8 @@
                 </form></li>
         </ul>
     </div>
+            @endif
+        @endisset
     @endauth
 
     <nav class="my-2 my-md-0 me-md-3">
@@ -52,9 +57,24 @@
         </button>
     </form>
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16" style="margin-right: 15px">
-        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-    </svg>
+        @if (Route::has('login'))
+            <div class="hidden fixed top-0 right-0 px-6 py-2 sm:block">
+                @auth
+                    <button type="button" class="btn btn-secondary" style="margin-right: 10px; margin-left: 10px">
+                    <a href="{{ url('/home') }}" class="text-sm text-white-700 underline" style="color: white">Кабінет</a>
+                    </button>
+                @else
+                    <button type="button" class="btn btn-secondary" style="margin-right: 10px; margin-left: 10px">
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline" style="color: white">Авторизація</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary" style="margin-right: 10px; margin-left: 10px">
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class=" text-sm text-gray-700 underline" style="color: white">Реєстрація</a>
+                    </button>
+                    @endif
+                @endauth
+            </div>
+        @endif
 
     <a href="/basket" style=" color: white" >
     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-basket3" viewBox="0 0 16 16">

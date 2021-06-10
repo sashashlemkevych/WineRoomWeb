@@ -24,7 +24,7 @@
                         </small> </h4>
                     <h5>Тип:<small>{{$el->type}}</small></h5>
                     <h5>Країна:<small>{{$el->country}}</small></h5>
-                    <form method="post" action="{{route('addToBasketAccess',['id'=>$el->id])}}" >
+                    <form method="post" action="{{route('addToBasketAcc',['id'=>$el->id])}}" >
                         @csrf
                         <span>Кількість:</span>
                         <input type="number" name="Count" value="1" style="width: 11%" min="1" max="{{$el->count}}">

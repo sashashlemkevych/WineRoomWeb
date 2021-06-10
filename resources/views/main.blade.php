@@ -12,8 +12,13 @@
                     <p>{{\Illuminate\Support\Str::limit($el->short_description,45,"...")}}</p>
                     <h5 class="card-title" style="color:#d22c2c;"> {{$el->price}} грн</h5>
                     <a class="btn btn-secondary" href="{{route("moredetalis_id",['id' => $el->id])}}" role="button">Докладніше</a>
+
                     @auth()
+                        @isset($isadmin)
+                            @if($isadmin)
                         <a class="btn btn-danger" href="{{route('UpdateInfo',[$el->id])}}" role="button">Редагувати</a>
+                            @endif
+                        @endisset
                     @endauth
                 </div>
             </div>
