@@ -78,7 +78,7 @@ class BasketController extends Controller
 
     }
 
-    public function orderview(Request $request){
+/*public function orderview(Request $request){
         $frst = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.*  FROM basket INNER JOIN wine_models ON wine_models.id = basket.idwine  WHERE basket.ID = ?",[$request->cookie('id')]);
         $tmp = true;
 
@@ -113,5 +113,5 @@ class BasketController extends Controller
             DB::delete("DELETE FROM basket WHERE ID =?",[$request->cookie('id')]);
         }
         return redirect()->route('main');
-    }
+    }*/
 }

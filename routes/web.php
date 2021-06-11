@@ -31,6 +31,8 @@ Route::get('/search',[App\Http\Controllers\MainController::class, 'search'])->na
 
 Route::get('/basket',[App\Http\Controllers\MainController::class, 'basket'])->name('basket');
 
+Route::post('/orders/create',[App\Http\Controllers\MainController::class, 'orders_create'])->name('orders_create');
+
 Route::get('/deleteBasket/{id}',[App\Http\Controllers\BasketController::class, 'deleteBasket'])->name('deleteBasket');
 
 Route::get('/deleteBasketA/{id}',[App\Http\Controllers\BasketController::class, 'deleteBasketA'])->name('deleteBasketA');
@@ -71,9 +73,10 @@ Route::post('/UpdateAccessories/{id}',[App\Http\Controllers\MainController::clas
 
 Route::get('/UpdateAccessories/delete/{id}',[App\Http\Controllers\MainController::class, 'deleteAccessories'])->name('deleteAccessories');
 
+
 Route::resource('WineModels', 'App\Http\Controllers\ProductController');
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('Корзина');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('Кабінет');

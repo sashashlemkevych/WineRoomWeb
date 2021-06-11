@@ -43,7 +43,11 @@
                 </table>
         <div style="width: 100%; text-align: right;" class="container">
             <div style="width: 50%; float: right;" class="p-1">
-                <a class="btn btn-outline-success" href="">Оформити замовлення</a>
+                <form action="{{ route('orders_create') }}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-success" >Оформити замовлення</button>
+                </form>
+
             </div>
         </div>
         @else

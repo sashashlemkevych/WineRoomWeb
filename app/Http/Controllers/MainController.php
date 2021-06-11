@@ -58,8 +58,14 @@ return redirect()->route('about');
     }
 
     public function Accessories(){
-        $access = new Accessories();
-        return view('Accessories', ['access' => $access->all()]);
+        $isadmin = false;
+        if(Auth::user()) {
+            $email = Auth::user()->email;
+            $admin_email = env('admin_user_email');
+            $isadmin = $admin_email == $email;
+        }
+        $accesso = new Accessories();
+        return view('Accessories', ['access' => $accesso->all(),'isadmin'=>$isadmin]);
     }
 
     public function addAccessories_check(Request $request){
@@ -113,7 +119,7 @@ return redirect()->route('about');
         public function search(Request $request){
             $search = $request->search;
             $wine = DB::select("SELECT * FROM wine_models WHERE name LIKE '%$search%'");
-            return view('main', ['product'=>$wine]);
+            return view('main', ['mains'=>$wine]);
         }
 
     public function bokal(Request $request){
@@ -251,4 +257,19 @@ return redirect()->route('about');
         DB::delete("DELETE FROM contacts WHERE id = ?",[$id]);
         return redirect()->route('infoContact');
     }
+
+    public function orders_create(Request $request){
+        if(auth()->user()) {
+            $backet_id = $request->cookie('id');
+            $user_id = auth()->user()->id;
+            DB::insert("INSERT INTO orders(idbasket, iduser, create_at) VALUES(?, ?, ?)", [$backet_id, $user_id, new \DateTime()]);
+            return redirect()->route('Кабінет',['alert'=>true])->withCookie(cookie('id', null, 0));
+
+        }
+
+        return redirect()->route('Кабінет');
+
+    }
+
 }
+
