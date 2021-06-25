@@ -23,7 +23,7 @@
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{route('addwine')}}">Додавання вина</a></li>
-            <li><a class="dropdown-item" href="">Замовлення</a></li>
+            <li><a class="dropdown-item" href="{{route('Orders')}}">Замовлення</a></li>
             <li><a class="dropdown-item" href="{{route('infoContact')}}">Повідомлення</a></li>
             <li><a class="dropdown-item" href="{{route('addAccessories')}}">Додавання аксесуарів</a></li>
             <li><hr class="dropdown-divider"></li>

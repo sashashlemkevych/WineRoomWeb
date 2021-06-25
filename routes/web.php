@@ -17,6 +17,8 @@ Route::get('/', [App\Http\Controllers\MainController::class, 'main'])->name('mai
 
 Route::get('/about',[App\Http\Controllers\MainController::class, 'about'])->name('about');
 
+Route::get('/Orders',[App\Http\Controllers\MainController::class, 'Orders'])->name('Orders');
+
 Route::post('/about/check',[App\Http\Controllers\MainController::class, 'about_check'])->name('about_check');
 
 Route::get('/addwine',[App\Http\Controllers\MainController::class, 'addwine'])->name('addwine');

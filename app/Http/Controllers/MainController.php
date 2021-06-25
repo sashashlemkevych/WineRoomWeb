@@ -48,7 +48,18 @@ return redirect()->route('about');
         $abouts = new Contact();
         return view('infoContact', ['abouts' => $abouts->all()]);
     }
-
+    public function Orders(){
+        $orders = db::select("SELECT u.name, u.email, u.id as uid, o.idbasket, o.create_at from orders as o Inner join users as u on u.id=o.iduser  " );
+        $towars = [];
+        foreach ($orders as $order){
+            $wines = collect(DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ? and basket.isa = false ",[$order->idbasket]))->toArray();
+            $access = collect(DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, accessories.* FROM basket INNER JOIN accessories ON accessories.id = basket.Idwine WHERE basket.ID = ? and basket.isa = true",[$order->idbasket]))->toArray();
+            $towars[$order->uid]= array(
+                'wines' => $wines,
+                'access' => $access,
+            );}
+        return view('Orders',['orders' => $orders, 'towars' => $towars]);
+    }
     public function addwine(){
         return view('addwine');
     }
