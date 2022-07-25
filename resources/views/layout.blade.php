@@ -94,7 +94,7 @@
     <div class="row">
         <div class="col-12 col-md">
             <img width="24" height="24" src="https://img.icons8.com/pastel-glyph/64/000000/wine-and-grapes.png"/>
-            <small class="d-block mb-3 text-muted">© 2020–2021</small>
+            <small class="d-block mb-3 text-muted">© 2022</small>
         </div>
         <div class="col-6 col-md">
             <h5>Магазин</h5>

@@ -19,14 +19,31 @@
                         @if($towars != NULL)
                         <div>
                             @foreach($towars as $t)
-                                @foreach($t['wines'] as $w)
-                                    {{$w->name}}
-                                @endforeach
-
-                                @foreach($t['access'] as $a)
-                                    <p>{{$a->name}}</p>
+                                <table class="table">
+                                    <tr>
+                                        <th scope="col">Назва</th>
+                                        <th scope="col">Кількість</th>
+                                        <th scope="col">Ціна</th>
+                                    </tr>
+                                    <tbody>
+                                    @foreach($t['wines'] as $w)
+                                        <tr>
+                                            <td>{{$w->name}}</td>
+                                            <td>{{$w->bcount}}</td>
+                                            <td>{{$w->bcount * $w->price}}</td>
+                                        </tr>
                                     @endforeach
 
+                                    @foreach($t['access'] as $a)
+                                        <tr>
+                                            <td>{{$a->name}}</td>
+                                            <td>{{$a->bcount}}</td>
+                                            <td>{{$a->bcount * $a->price}}</td>
+                                        </tr>
+
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             @endforeach
                         </div>
                         @else

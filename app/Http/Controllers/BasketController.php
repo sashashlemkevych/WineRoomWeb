@@ -19,23 +19,26 @@ use Symfony\Component\Console\Logger\ConsoleLogger;
 class BasketController extends Controller
 {
     public function addToBasket($id, Request $request)
-    {
+    { if( auth()->user() == NULL){
+        return redirect()->route('login');
+    }
         $tmp = (new DateTime())->format('His');
         if ($request->cookie('id') == NULL) {
-            DB::insert("INSERT INTO basket(ID,idwine,counts) VALUES(?,?,?)", [$tmp, $id, $request->input('Count')]);
+            DB::insert("INSERT INTO orders(idbasket,iduser, created, create_at) VALUES(?,?,?,?)", [$tmp,auth()->user()->id, false, new \DateTime()]);
+            DB::insert("INSERT INTO basket(ID,idwine,isa,counts) VALUES(?,?,?,?)", [$tmp, $id, NULL, $request->input('Count')]);
             return redirect()->route('moredetalis_id', [$id])->withCookie(cookie('id', $tmp, 30));
         } else {
             $basket = DB::select("SELECT * FROM basket WHERE ID = ?", [$request->cookie('id')]);
             $add = true;
             foreach ($basket as $el) {
                 if ($el->idwine == $id && $el->isa == false) {
-                    DB::update("UPDATE basket SET counts = counts + ? WHERE ID = ? AND idwine = ? AND isa = false", [$request->input('Count'), $request->cookie('id'), $id]);
+                    DB::update("UPDATE basket SET counts = counts + ? WHERE ID = ? AND idwine = ?", [$request->input('Count'), $request->cookie('id'), $id]);
                     $add = false;
                     break;
                 }
 
             }
-            if ($add) DB::insert("INSERT INTO basket(ID,idwine,counts) VALUES(?,?,?)", [$request->cookie('id'), $id, $request->input('Count')]);
+            if ($add) DB::insert("INSERT INTO basket(ID,idwine,isa,counts) VALUES(?,?,?,?)", [$request->cookie('id'), $id, NULL,$request->input('Count')]);
             return redirect()->route('moredetalis_id', [$id]);
         }
 
@@ -45,20 +48,21 @@ class BasketController extends Controller
     {
         $tmp = (new DateTime())->format('His');
         if ($request->cookie('id') == NULL) {
-            DB::insert("INSERT INTO basket(ID,idwine,isa,counts) VALUES(?,?,?,?)", [$tmp, $id, true, $request->input('Count')]);
+            DB::insert("INSERT INTO orders(idbasket,iduser, created, create_at) VALUES(?,?,?,?)", [$tmp,auth()->user()->id, false, new \DateTime()]);
+            DB::insert("INSERT INTO basket(ID,idwine,isa,counts) VALUES(?,?,?,?)", [$tmp, NULL, $id, $request->input('Count')]);
             return redirect()->route('moreAccessories_id', [$id])->withCookie(cookie('id', $tmp, 30));
         } else {
             $basket = DB::select("SELECT * FROM basket WHERE ID = ?", [$request->cookie('id')]);
             $add = true;
             foreach ($basket as $el) {
                 if ($el->idwine == $id && $el->isa == true) {
-                    DB::update("UPDATE basket SET counts = counts + ? WHERE ID = ? AND idwine = ? AND isa = true", [$request->input('Count'), $request->cookie('id'), $id]);
+                    DB::update("UPDATE basket SET counts = counts + ? WHERE ID = ? AND isa = ?", [$request->input('Count'), $request->cookie('id'), $id]);
                     $add = false;
                     break;
                 }
 
             }
-            if ($add) DB::insert("INSERT INTO basket(ID,idwine,isa,counts) VALUES(?,?,?,?)", [$request->cookie('id'), $id, true, $request->input('Count')]);
+            if ($add) DB::insert("INSERT INTO basket(ID,idwine,isa,counts) VALUES(?,?,?,?)", [$request->cookie('id'), NULL, $id, $request->input('Count')]);
             return redirect()->route('moreAccessories_id', [$id]);
         }
 
@@ -66,14 +70,14 @@ class BasketController extends Controller
 
     public function deleteBasket($id, Request $request)
     {
-        DB::delete("DELETE FROM basket WHERE ID = ? AND idwine = ? AND isa = false ", [$request->cookie('id'), $id]);
+        DB::delete("DELETE FROM basket WHERE ID = ? AND idwine = ? ", [$request->cookie('id'), $id]);
         return redirect()->route('basket');
 
     }
 
     public function deleteBasketA($id, Request $request)
     {
-        DB::delete("DELETE FROM basket WHERE ID = ? AND idwine = ? AND isa = true", [$request->cookie('id'), $id]);
+        DB::delete("DELETE FROM basket WHERE ID = ? AND isa = ?", [$request->cookie('id'), $id]);
         return redirect()->route('basket');
 
     }

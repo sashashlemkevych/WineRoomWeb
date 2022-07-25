@@ -12,12 +12,12 @@
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne{{$o->uid}}" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn" type="button" data-toggle="collapse" data-target="#collapseOne{{$o->idbasket}}" aria-expanded="true" aria-controls="collapseOne">
                             {{ $o->name }} Пошта замовника:{{ $o->email }}
                         </button>
                     </h2>
                 </div>
-                <div id="collapseOne{{$o->uid}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne{{$o->idbasket}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <table class="table">
                             <thead>
@@ -28,9 +28,9 @@
                                 <th scope="col">Дата</th>
                             </tr>
                             </thead>
-                            @isset($towars[$o->uid])
+                            @isset($towars[$o->idbasket])
                                 <tbody>
-                                    @foreach($towars[$o->uid]['wines'] as $w)
+                                    @foreach($towars[$o->idbasket]['wines'] as $w)
                                         <tr>
                                             <td>{{$w->name}}</a></td>
                                             <td>{{$w->bcount}}</a></td>
@@ -39,7 +39,7 @@
                                         </tr>
                                     @endforeach
 
-                                    @foreach($towars[$o->uid]['access'] as $a)
+                                    @foreach($towars[$o->idbasket]['access'] as $a)
                                         <tr>
                                             <td>{{$a->name}}</a></td>
                                             <td>{{$a->bcount}}</a></td>
@@ -47,10 +47,11 @@
                                             <td>{{$o->create_at}}</td>
                                         </tr>
                                     @endforeach
+                                    @else
+                                        <h2>Даних нема</h2>
+                                    @endisset
                                 </tbody>
-                            @else
-                                <h2>Даних нема</h2>
-                            @endisset
+
                         </table>
                     </div>
                 </div>

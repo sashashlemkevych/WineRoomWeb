@@ -49,12 +49,12 @@ return redirect()->route('about');
         return view('infoContact', ['abouts' => $abouts->all()]);
     }
     public function Orders(){
-        $orders = db::select("SELECT u.name, u.email, u.id as uid, o.idbasket, o.create_at from orders as o Inner join users as u on u.id=o.iduser  " );
+        $orders = db::select("SELECT u.name, u.email, u.id as uid, o.idbasket, o.create_at from orders as o Inner join users as u on u.id=o.iduser WHERE created > 0" );
         $towars = [];
         foreach ($orders as $order){
-            $wines = collect(DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ? and basket.isa = false ",[$order->idbasket]))->toArray();
-            $access = collect(DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, accessories.* FROM basket INNER JOIN accessories ON accessories.id = basket.Idwine WHERE basket.ID = ? and basket.isa = true",[$order->idbasket]))->toArray();
-            $towars[$order->uid]= array(
+            $wines = collect(DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ?  ",[$order->idbasket]))->toArray();
+            $access = collect(DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, accessories.* FROM basket INNER JOIN accessories ON accessories.id = basket.isa WHERE basket.ID = ? ",[$order->idbasket]))->toArray();
+            $towars[$order->idbasket]= array(
                 'wines' => $wines,
                 'access' => $access,
             );}
@@ -120,9 +120,9 @@ return redirect()->route('about');
     }
 
     public function basket(Request $request){
-        $wines = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ? and basket.isa = false ",[$request->cookie('id')]);
+        $wines = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, wine_models.* FROM basket INNER JOIN wine_models ON wine_models.ID = basket.Idwine WHERE basket.ID = ?  ",[$request->cookie('id')]);
 
-        $access = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, accessories.* FROM basket INNER JOIN accessories ON accessories.id = basket.Idwine WHERE basket.ID = ? and basket.isa = true",[$request->cookie('id')]);
+        $access = DB::select("SELECT basket.ID AS basketID, basket.counts AS bcount, accessories.* FROM basket INNER JOIN accessories ON accessories.id = basket.isa WHERE basket.ID = ? ",[$request->cookie('id')]);
 
         return view('basket', ['wines'=>isset($wines)?$wines:NULL,'access'=>isset($access)?$access:NULL]);
     }
@@ -273,7 +273,7 @@ return redirect()->route('about');
         if(auth()->user()) {
             $backet_id = $request->cookie('id');
             $user_id = auth()->user()->id;
-            DB::insert("INSERT INTO orders(idbasket, iduser, create_at) VALUES(?, ?, ?)", [$backet_id, $user_id, new \DateTime()]);
+            DB::update("UPDATE orders SET created=true, update_at=? WHERE idbasket=?", [new \DateTime(), $backet_id]);
             return redirect()->route('Кабінет',['alert'=>true])->withCookie(cookie('id', null, 0));
 
         }
